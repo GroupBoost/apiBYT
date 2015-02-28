@@ -6,6 +6,8 @@ import web
 import json
 import clases
 
+controlador = clases.Controlador()
+
 urls = (
 	'/(.*)', 'basura'
 )
