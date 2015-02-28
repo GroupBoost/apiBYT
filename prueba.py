@@ -4,6 +4,7 @@
 import sys
 import web
 import json
+import clases
 
 urls = (
 	'/(.*)', 'basura'
