@@ -6,8 +6,9 @@ from Projecto import Projecto
 class Usuario :
 	
 	#Constructor segun posicion color y tipo
-	def __init__ (self, nick, correo, descripcion, localidad) :
+	def __init__ (self, nick, passwd, correo, descripcion, localidad) :
 		self.nick = nick
+		self.passwd = passwd
 		self.correo = correo
 		self.descripcion = descripcion
 		self.localidad = localidad
@@ -33,6 +34,9 @@ class Usuario :
 
 	def getUserPro(self) :
 		return self.userPro
+
+	def getPasswd(self) :
+		return self.passwd
 
 	def getOtherPro(self) :
 		return self.otherPro
