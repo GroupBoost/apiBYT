@@ -6,17 +6,53 @@ import web
 import json
 import clases
 
-controlador = clases.Controlador()
+controladora = clases.Controlador()
 
 urls = (
-	'/(.*)', 'basura'
+	'/registro/' 'Registro',
+	'/login/', 'Login',
+	'/nuevoPro/', 'NuevoPro'
 )
 
 app = web.application(urls, globals())
 
-class basura:
-	def GET(self, basura):
-		return "<h1>Nop</h1>"
+class Registro :
+	def POST (self) :
+		jobj = json.loads(web.data())
+		dicc = {}
+		aux = controladora.nuevoUser(jobj)
+		if aux[0]  == True:
+			dicc["resultado"] = True
+		else :
+			dicc["resultado"] = False
+			dicc["error"] = aux[1]
+
+		return json.dumps(dicc)
+
+class Login :
+	def POST (self) :
+		jobj = json.loads(web.data())
+		dicc = {}
+
+		if controladora.login(jobj) == True :
+			dicc["resultado"] = True
+		else :
+			dicc["resultado"] = False
+
+		return json.dumps(dicc)
+
+class NuevoPro :
+	def POST (self) :
+		jobj = json.loads(web.data())
+		dicc = {}
+
+		if controladora.nuevoProjecto(jobj) == True :
+			dicc["resultado"] = True
+		else :
+			dicc["resultado"] = False
+
+		return json.dumps(dicc)
+		
 
 if __name__ == "__main__":
 	app.run()

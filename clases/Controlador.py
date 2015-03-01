@@ -15,21 +15,34 @@ class Controlador :
 
 	#Gestion de usuarios y projectos
 
-	def nuevoUser(self, nick, passwd, correo, descripcion, localidad) :
+	#def nuevoUser(self, nick, passwd, correo, descripcion, localidad) :
+	def nuevoUser(self, jobj) :
 		for usr in self.users :
-			if usr.getNick() == nick :
-				return False
+			if usr.getNick() == job["nick"] :
+				return [False,"nick"]
+			if usr.getCorreo() == job["correo"] :
+				return [False, "correo"]
 
-		self.users.append(Usuario(nick, passwd, corre, descripcion, localidad))
-		return True
+		aux = Usuario(jobj["nick"], jobj["passwd"],
+			jobj["correo"], jobj["descripcion"], jobj["localidad"])
+		self.users.append(aux)
+		return [True, aux]
 
-	def nuevoProjecto(self, nick, nombre, descripcion) :
+	def login(self, jobj) :
+		usr = getUserByNick(jobj["nick"])
+		if usr.getPasswd() == jobj["passwd"] :
+			return True
+		else :
+			return False
+
+	#def nuevoProjecto(self, nick, nombre, descripcion) :
+	def nuevoProjecto(self, jobj) :
 		for pro in self.projectos :
-			if pro.getNombre == nombre :
+			if pro.getNombre() == jobj["nombre"] :
 				return False
 
-		user = self.getUserByNick(nick)
-		aux = Projecto(nombre,descripcion, user)
+		user = self.getUserByNick(jobj["nick"])
+		aux = Projecto(jobj["nombre"],jobj["descripcion"], jobj["user"])
 		user.addUserPro(aux)
 		self.projectos(aux)
 		return True
