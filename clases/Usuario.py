@@ -53,3 +53,28 @@ class Usuario :
 	
 	def getLocalidad(self) :
 		return self.localidad
+
+	def getJsonResponse(self) :
+		dicc = {}
+		dicc["nick"] = self.nick
+		dicc["correo"] = self.correo
+		dicc["descripcion"] = self.descripcion
+		dicc["localidad"] = self.localidad
+
+		aux = []
+		for project in self.userPro :
+			aux2 = {}
+			aux2["nombre"] = project.getNombre()
+			aux.append(aux2)
+
+		dicc["propios"] = aux
+
+		aux = []
+		for project in self.otherPro :
+			aux2 = {}
+			aux2["nombre"] = project.getNombre()
+			aux.append(aux2)
+
+		dicc["otros"] = aux
+
+		return dicc

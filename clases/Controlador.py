@@ -8,14 +8,12 @@ import clases
 
 class Controlador :
 	
-	#Constructor segun posicion color y tipo
 	def __init__ (self) :
 		self.users = []
 		self.projectos = []
 
 	#Gestion de usuarios y projectos
 
-	#def nuevoUser(self, nick, passwd, correo, descripcion, localidad) :
 	def nuevoUser(self, jobj) :
 		for usr in self.users :
 			if usr.getNick() == job["nick"] :
@@ -35,7 +33,6 @@ class Controlador :
 		else :
 			return False
 
-	#def nuevoProjecto(self, nick, nombre, descripcion) :
 	def nuevoProjecto(self, jobj) :
 		for pro in self.projectos :
 			if pro.getNombre() == jobj["nombre"] :
@@ -47,9 +44,9 @@ class Controlador :
 		self.projectos(aux)
 		return True
 
-	def removeProject(self, nick, nombre) :
-		project = self.getProjectByNombre(nombre)
-		user = self.getUserByNick(nick)
+	def removeProject(self, jobj) :
+		project = self.getProjectByNombre(jobj["nombre"])
+		user = self.getUserByNick(jobj["nick"])
 
 		if project.getOwner() == user :
 			adjuntos = project.getUsers()
@@ -64,9 +61,9 @@ class Controlador :
 			user.removeOtherPro(project)
 			project.removeUser(user)
 
-	def addUserToProject(self, nick, nombre) :
-		project = self.getProjectByNombre(nombre)
-		user = self.getUserByNick(nick)
+	def addUserToProject(self, jobj) :
+		project = self.getProjectByNombre(jobj["nombre"])
+		user = self.getUserByNick(jobj["nick"])
 		project.addUser(user)
 		user.addOtherPro(project)
 
@@ -89,3 +86,10 @@ class Controlador :
 	def getProjectos(self) :
 		return self.projectos
 
+	def getUserInfo (self, jobj) :
+		usr = getUserByNick(jobj["nick"])
+		return usr.getJsonResponse()
+
+	def getProjectInfo (self, jobj) :
+		project = getProjectByNombre(jobj["nombre"])
+		return project.getJsonResponse()

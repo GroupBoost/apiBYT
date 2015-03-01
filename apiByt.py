@@ -9,9 +9,13 @@ import clases
 controladora = clases.Controlador()
 
 urls = (
-	'/registro/' 'Registro',
-	'/login/', 'Login',
-	'/nuevoPro/', 'NuevoPro'
+	'/registro/', 	'Registro',
+	'/login/', 		'Login',
+	'/nuevoPro/', 	'NuevoPro',
+	'/unirsePro/', 	'UnirsePro',
+	'/borrarPro/', 	'BorrarPro',
+	'/getUsuario/', 'GetUsuario',
+	'/getProjecto/', 'GetProjecto'
 )
 
 app = web.application(urls, globals())
@@ -52,7 +56,26 @@ class NuevoPro :
 			dicc["resultado"] = False
 
 		return json.dumps(dicc)
-		
+
+class UnirsePro :
+	def POST (self) :
+		jobj = json.loads(web.data())
+		controladora.addUserToProject(jobj)
+
+class BorrarPro :
+	def POST (self) :
+		jobj = json.loads(web.data())
+		controladora.removeProject(jobj)
+
+class GetUsuario :
+	def POST (self) :
+		jobj = json.loads(web.data())
+		return json.dumps(controladora.getUserInfo(jobj))
+
+class GetProjecto :
+	def POST (self) :
+		jobj = json.loads(web.data())
+		return json.dumps(controladora.getProjectInfo(jobj))
 
 if __name__ == "__main__":
 	app.run()

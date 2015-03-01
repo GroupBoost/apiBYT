@@ -36,3 +36,19 @@ class Projecto :
 	def getDescripcion(self) :
 		return self.descripcion
 
+	def getJsonResponse(self) :
+		dicc = {}
+		dicc["nombre"] = self.nombre
+		dicc["descripcion"] = self.descripcion
+		dicc["owner"] = self.owner
+		
+		aux = []
+
+		for usr in self.users :
+			aux2 = {}
+			aux2["nick"] = usr.getNick()
+			aux.append(aux2)
+
+		dicc["users"] = aux
+
+		return dicc
