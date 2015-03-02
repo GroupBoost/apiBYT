@@ -1,1 +1,0 @@
-{"descripcion": "projectDescripcion", "nombre": "projectNombre", "users": [{"nick": "waxanickdos"}], "owner": "waxanick"}
