@@ -7,4 +7,5 @@
     <string name="no_wifi_or_mobile">No wireless or mobile connection.</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_login">Login</string>
+    <string name="title_activity_nuevo_pro">NuevoPro</string>
 </resources>

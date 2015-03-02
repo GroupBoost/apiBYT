@@ -27,6 +27,10 @@
             android:name=".Login"
             android:label="@string/title_activity_login" >
         </activity>
+        <activity
+            android:name=".NuevoPro"
+            android:label="@string/title_activity_nuevo_pro" >
+        </activity>
     </application>
 
 </manifest>

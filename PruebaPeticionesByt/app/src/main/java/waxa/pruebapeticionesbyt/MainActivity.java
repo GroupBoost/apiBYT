@@ -14,6 +14,7 @@ public class MainActivity extends Activity {
 
     private Button registro;
     private Button login;
+    private Button nuevoPro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class MainActivity extends Activity {
 
         registro = (Button)findViewById(R.id.registro);
         login = (Button)findViewById(R.id.login);
+        nuevoPro = (Button)findViewById(R.id.nuevoPro);
 
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +38,13 @@ public class MainActivity extends Activity {
                 lanzarLogin();
             }
         });
+
+        nuevoPro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lanzarNuevoPro();
+            }
+        });
     }
 
     private void lanzarRegistro(){
@@ -45,6 +54,11 @@ public class MainActivity extends Activity {
 
     private void lanzarLogin(){
         Intent i = new Intent(this, Login.class);
+        startActivity(i);
+    }
+
+    private void lanzarNuevoPro(){
+        Intent i = new Intent(this, NuevoPro.class);
         startActivity(i);
     }
 
