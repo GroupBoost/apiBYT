@@ -1,2 +1,0 @@
-{"localidad": "vall", "propios": [{"nombre": "projecto"}], "passwd": "pass", "correo": "email", "nick": "waxa", "descripcion": "descrip", "otros": []}
-{"localidad": "vall", "propios": [], "passwd": "pass", "correo": "email2", "nick": "waxa2", "descripcion": "descrip2", "otros": [{"nombre": "projecto"}]}
