@@ -15,6 +15,8 @@ public class MainActivity extends Activity {
     private Button registro;
     private Button login;
     private Button nuevoPro;
+    private Button unirsePro;
+    private Button borrarPro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,8 @@ public class MainActivity extends Activity {
         registro = (Button)findViewById(R.id.registro);
         login = (Button)findViewById(R.id.login);
         nuevoPro = (Button)findViewById(R.id.nuevoPro);
+        unirsePro = (Button)findViewById(R.id.unirsePro);
+        borrarPro = (Button)findViewById(R.id.borrarPro);
 
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +49,20 @@ public class MainActivity extends Activity {
                 lanzarNuevoPro();
             }
         });
+
+        unirsePro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lanzarUnirsePro();
+            }
+        });
+
+        borrarPro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lanzarBorrarPro();
+            }
+        });
     }
 
     private void lanzarRegistro(){
@@ -61,5 +79,16 @@ public class MainActivity extends Activity {
         Intent i = new Intent(this, NuevoPro.class);
         startActivity(i);
     }
+
+    private void lanzarUnirsePro(){
+        Intent i = new Intent(this, UnirsePro.class);
+        startActivity(i);
+    }
+
+    private void lanzarBorrarPro(){
+        Intent i = new Intent(this, BorrarPro.class);
+        startActivity(i);
+    }
+
 
 }

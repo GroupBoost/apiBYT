@@ -8,4 +8,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_nuevo_pro">NuevoPro</string>
+    <string name="title_activity_unirse_pro">UnirsePro</string>
+    <string name="title_activity_borrar_pro">BorrarPro</string>
 </resources>

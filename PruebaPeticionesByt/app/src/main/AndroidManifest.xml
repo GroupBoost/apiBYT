@@ -31,6 +31,14 @@
             android:name=".NuevoPro"
             android:label="@string/title_activity_nuevo_pro" >
         </activity>
+        <activity
+            android:name=".UnirsePro"
+            android:label="@string/title_activity_unirse_pro" >
+        </activity>
+        <activity
+            android:name=".BorrarPro"
+            android:label="@string/title_activity_borrar_pro" >
+        </activity>
     </application>
 
 </manifest>
