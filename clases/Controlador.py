@@ -93,7 +93,7 @@ class Controlador :
 			adjuntos = project.getUsers()
 
 			for usr in adjuntos :
-				urs.removeOtherPro(project)
+				usr.removeOtherPro(project)
 
 			user.removeUserPro(project)
 			self.projectos.remove(project)
