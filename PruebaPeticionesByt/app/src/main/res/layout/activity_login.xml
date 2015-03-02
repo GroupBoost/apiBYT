@@ -51,6 +51,19 @@
         android:layout_height="0dp"
         android:layout_weight="5"/>
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:password="true"
+        android:hint="tu passwd"
+        android:id="@+id/passwd"/>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="5"/>
+
     <Button
         android:layout_width="wrap_content"
         android:gravity="center"
