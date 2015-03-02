@@ -76,4 +76,28 @@
         android:layout_height="0dp"
         android:layout_weight="5"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:id="@+id/usrInfo"
+        android:text="Informacion Usuario"
+        android:layout_weight="20"/>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="5"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:id="@+id/proInfo"
+        android:text="Informacion Projecto"
+        android:layout_weight="20"/>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="5"/>
+
 </LinearLayout>

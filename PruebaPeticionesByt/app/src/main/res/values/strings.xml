@@ -10,4 +10,6 @@
     <string name="title_activity_nuevo_pro">NuevoPro</string>
     <string name="title_activity_unirse_pro">UnirsePro</string>
     <string name="title_activity_borrar_pro">BorrarPro</string>
+    <string name="title_activity_usr_info">UsrInfo</string>
+    <string name="title_activity_pro_info">ProInfo</string>
 </resources>

@@ -2,10 +2,7 @@ package waxa.pruebapeticionesbyt;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,6 +14,8 @@ public class MainActivity extends Activity {
     private Button nuevoPro;
     private Button unirsePro;
     private Button borrarPro;
+    private Button usrInfo;
+    private Button proInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +27,8 @@ public class MainActivity extends Activity {
         nuevoPro = (Button)findViewById(R.id.nuevoPro);
         unirsePro = (Button)findViewById(R.id.unirsePro);
         borrarPro = (Button)findViewById(R.id.borrarPro);
+        usrInfo = (Button)findViewById(R.id.usrInfo);
+        proInfo = (Button)findViewById(R.id.proInfo);
 
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +64,20 @@ public class MainActivity extends Activity {
                 lanzarBorrarPro();
             }
         });
+
+        usrInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lanzarUsrInfo();
+            }
+        });
+
+        proInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lanzarProInfo();
+            }
+        });
     }
 
     private void lanzarRegistro(){
@@ -87,6 +102,16 @@ public class MainActivity extends Activity {
 
     private void lanzarBorrarPro(){
         Intent i = new Intent(this, BorrarPro.class);
+        startActivity(i);
+    }
+
+    private void lanzarUsrInfo(){
+        Intent i = new Intent(this, UsrInfo.class);
+        startActivity(i);
+    }
+
+    private void lanzarProInfo(){
+        Intent i = new Intent(this, ProInfo.class);
         startActivity(i);
     }
 
