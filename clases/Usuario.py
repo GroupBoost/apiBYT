@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import clases
+from Projecto import Projecto
 #from Projecto import Projecto
 
 class Usuario :

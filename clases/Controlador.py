@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import clases
-
+import json
 #from Usuario import Usuario
 #from Projecto import Projecto
 
@@ -23,13 +23,13 @@ class Controlador :
 
 		for usr in aux :
 			jobj = json.loads(usr)
-			self.users.append(Usuario(jobj["nick"], jobj["passwd"],
+			self.users.append(clases.Usuario(jobj["nick"], jobj["passwd"],
 				jobj["correo"], jobj["descripcion"], jobj["localidad"]))
 
 		for projectJson in aux2 :
 			jobj = json.loads(projectJson)
 			owner = getUserByNick(jobj["owner"])
-			project = Projecto(jobj["nombre"],
+			project = clases.Projecto(jobj["nombre"],
 				jobj["descripcion"], owner)
 
 			for usrName in jobj["users"] :
@@ -42,20 +42,26 @@ class Controlador :
 	#Gestion de usuarios y projectos
 
 	def nuevoUser(self, jobj) :
+
+		if not jobj["nick"] or not jobj["passwd"] \
+			or not jobj["correo"] or not jobj["descripcion"] \
+			or not jobj["localidad"] :
+			return [False, "empty data"]
+
 		for usr in self.users :
-			if usr.getNick() == job["nick"] :
+			if usr.getNick() == jobj["nick"] :
 				return [False,"nick"]
-			if usr.getCorreo() == job["correo"] :
+			if usr.getCorreo() == jobj["correo"] :
 				return [False, "correo"]
 
-		aux = Usuario(jobj["nick"], jobj["passwd"],
+		aux = clases.Usuario(jobj["nick"], jobj["passwd"],
 			jobj["correo"], jobj["descripcion"], jobj["localidad"])
 		self.users.append(aux)
-		guardarDatos()
+		self.guardarDatos()
 		return [True, aux]
 
 	def login(self, jobj) :
-		usr = getUserByNick(jobj["nick"])
+		usr = self.getUserByNick(jobj["nick"])
 		if usr.getPasswd() == jobj["passwd"] :
 			return True
 		else :
@@ -67,7 +73,7 @@ class Controlador :
 				return False
 
 		user = self.getUserByNick(jobj["nick"])
-		aux = Projecto(jobj["nombre"],jobj["descripcion"], user)
+		aux = clases.Projecto(jobj["nombre"],jobj["descripcion"], user)
 		user.addUserPro(aux)
 		self.projectos(aux)
 		guardarDatos()
@@ -120,18 +126,20 @@ class Controlador :
 		return self.projectos
 
 	def getUserInfo (self, jobj) :
-		usr = getUserByNick(jobj["nick"])
+		usr = self.getUserByNick(jobj["nick"])
 		return usr.getJsonResponse()
 
 	def getProjectInfo (self, jobj) :
-		project = getProjectByNombre(jobj["nombre"])
+		project = self.getProjectByNombre(jobj["nombre"])
 		return project.getJsonResponse()
 
 	def guardarDatos(self) :
 		fich = open("usuarios.txt","w")
 
 		for usr in self.users :
-			fich.write(json.dumps(usr.getJsonResponse()))
+			jobj = usr.getJsonResponse()
+			jobj["passwd"] = usr.getPasswd()
+			fich.write(json.dumps(jobj))
 
 		fich.close()
 		fich = open("projectos.txt","w")

@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import clases
+
+#from Usuario import Usuario
 #from Usuario import Usuario
 
 class Projecto :

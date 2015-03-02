@@ -1,0 +1,1 @@
+{"localidad": "waxalocalidad", "propios": [], "passwd": "waxapasswd", "correo": "waxacorreo", "nick": "waxanick", "descripcion": "waxadescripcion", "otros": []}
