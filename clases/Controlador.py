@@ -12,6 +12,33 @@ class Controlador :
 		self.users = []
 		self.projectos = []
 
+		fich = open ("usuarios.txt", "r")
+		aux = fich.readlines()
+
+		fich2 = open("projectos.txt", "r")
+		aux2 = fich2.readlines()
+
+		fich.close()
+		fich2.close()
+
+		for usr in aux :
+			jobj = json.loads(usr)
+			self.users.append(Usuario(jobj["nick"], jobj["passwd"],
+				jobj["correo"], jobj["descripcion"], jobj["localidad"]))
+
+		for projectJson in aux2 :
+			jobj = json.loads(projectJson)
+			owner = getUserByNick(jobj["owner"])
+			project = Projecto(jobj["nombre"],
+				jobj["descripcion"], owner))
+
+			for usrName in jobj["users"] :
+				usr = getUserByNick(usrName)
+				project.addUser(usr)
+				usr.addOtherPro(project)
+
+			owner.addUserPro(project)
+
 	#Gestion de usuarios y projectos
 
 	def nuevoUser(self, jobj) :
@@ -24,6 +51,7 @@ class Controlador :
 		aux = Usuario(jobj["nick"], jobj["passwd"],
 			jobj["correo"], jobj["descripcion"], jobj["localidad"])
 		self.users.append(aux)
+		guardarDatos()
 		return [True, aux]
 
 	def login(self, jobj) :
@@ -39,9 +67,10 @@ class Controlador :
 				return False
 
 		user = self.getUserByNick(jobj["nick"])
-		aux = Projecto(jobj["nombre"],jobj["descripcion"], jobj["user"])
+		aux = Projecto(jobj["nombre"],jobj["descripcion"], user)
 		user.addUserPro(aux)
 		self.projectos(aux)
+		guardarDatos()
 		return True
 
 	def removeProject(self, jobj) :
@@ -61,11 +90,15 @@ class Controlador :
 			user.removeOtherPro(project)
 			project.removeUser(user)
 
+		guardarDatos()
+
 	def addUserToProject(self, jobj) :
 		project = self.getProjectByNombre(jobj["nombre"])
 		user = self.getUserByNick(jobj["nick"])
 		project.addUser(user)
 		user.addOtherPro(project)
+		guardarDatos()
+		
 
 	#Getters y setters
 
@@ -93,3 +126,23 @@ class Controlador :
 	def getProjectInfo (self, jobj) :
 		project = getProjectByNombre(jobj["nombre"])
 		return project.getJsonResponse()
+
+	def guardarDatos(self) :
+		fich = open("usuarios.txt","w")
+
+		for usr in self.users :
+			fich.write(json.dumps(usr.getJsonResponse()))
+
+		fich.close()
+		fich = open("projectos.txt","w")
+
+		for project in self.projectos :
+			fich.write(json.dumps(project.getJsonResponse()))
+
+		fich.close()
+
+
+
+
+
+
