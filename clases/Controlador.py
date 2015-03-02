@@ -28,12 +28,12 @@ class Controlador :
 
 		for projectJson in aux2 :
 			jobj = json.loads(projectJson)
-			owner = getUserByNick(jobj["owner"])
+			owner = self.getUserByNick(jobj["owner"])
 			project = clases.Projecto(jobj["nombre"],
 				jobj["descripcion"], owner)
 
 			for usrName in jobj["users"] :
-				usr = getUserByNick(usrName)
+				usr = self.getUserByNick(usrName)
 				project.addUser(usr)
 				usr.addOtherPro(project)
 
@@ -75,8 +75,8 @@ class Controlador :
 		user = self.getUserByNick(jobj["nick"])
 		aux = clases.Projecto(jobj["nombre"],jobj["descripcion"], user)
 		user.addUserPro(aux)
-		self.projectos(aux)
-		guardarDatos()
+		self.projectos.append(aux)
+		self.guardarDatos()
 		return True
 
 	def removeProject(self, jobj) :
@@ -145,7 +145,8 @@ class Controlador :
 		fich = open("projectos.txt","w")
 
 		for project in self.projectos :
-			fich.write(json.dumps(project.getJsonResponse()))
+			jobj = project.getJsonResponse()
+			fich.write(json.dumps(jobj))
 
 		fich.close()
 

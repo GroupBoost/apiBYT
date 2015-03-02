@@ -12,7 +12,7 @@ class Projecto :
 	def __init__ (self, nombre, descripcion, owner) :
 		self.nombre = nombre
 		self.descripcion = descripcion
-		self.owner = user
+		self.owner = owner
 		self.users = []
 
 
@@ -42,7 +42,7 @@ class Projecto :
 		dicc = {}
 		dicc["nombre"] = self.nombre
 		dicc["descripcion"] = self.descripcion
-		dicc["owner"] = self.owner
+		dicc["owner"] = self.owner.getNick()
 		
 		aux = []
 
