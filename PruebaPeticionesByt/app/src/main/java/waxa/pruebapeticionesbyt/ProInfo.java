@@ -73,7 +73,7 @@ public class ProInfo extends Activity {
     private void realizarPeticion() throws Exception{
         BufferedReader in = null;
 
-        JSONObject jobj = crearJsonPrueba();
+        JSONObject jobj = crearJsonReal();
 
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost();
