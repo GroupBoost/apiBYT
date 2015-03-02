@@ -26,6 +26,7 @@ class Controlador :
 			self.users.append(clases.Usuario(jobj["nick"], jobj["passwd"],
 				jobj["correo"], jobj["descripcion"], jobj["localidad"]))
 
+
 		for projectJson in aux2 :
 			jobj = json.loads(projectJson)
 			owner = self.getUserByNick(jobj["owner"])
@@ -33,11 +34,12 @@ class Controlador :
 				jobj["descripcion"], owner)
 
 			for usrName in jobj["users"] :
-				usr = self.getUserByNick(usrName)
+				usr = self.getUserByNick(usrName["nick"])
 				project.addUser(usr)
 				usr.addOtherPro(project)
 
 			owner.addUserPro(project)
+			self.projectos.append(project)
 
 	#Gestion de usuarios y projectos
 
@@ -68,6 +70,10 @@ class Controlador :
 			return False
 
 	def nuevoProjecto(self, jobj) :
+		if not jobj["nombre"] or not jobj["nick"] \
+			or not jobj["descripcion"] :
+			return False
+
 		for pro in self.projectos :
 			if pro.getNombre() == jobj["nombre"] :
 				return False
@@ -96,16 +102,15 @@ class Controlador :
 			user.removeOtherPro(project)
 			project.removeUser(user)
 
-		guardarDatos()
+		self.guardarDatos()
 
 	def addUserToProject(self, jobj) :
 		project = self.getProjectByNombre(jobj["nombre"])
 		user = self.getUserByNick(jobj["nick"])
 		project.addUser(user)
 		user.addOtherPro(project)
-		guardarDatos()
+		self.guardarDatos()
 		
-
 	#Getters y setters
 
 	def getUserByNick(self, nick) :
@@ -115,7 +120,7 @@ class Controlador :
 
 	def getProjectByNombre(self, nombre) :
 		for aux in self.projectos :
-			if nick == aux.getNombre() :
+			if nombre == aux.getNombre() :
 				return aux
 
 
@@ -139,14 +144,14 @@ class Controlador :
 		for usr in self.users :
 			jobj = usr.getJsonResponse()
 			jobj["passwd"] = usr.getPasswd()
-			fich.write(json.dumps(jobj))
+			fich.write(json.dumps(jobj)+"\n")
 
 		fich.close()
 		fich = open("projectos.txt","w")
 
 		for project in self.projectos :
 			jobj = project.getJsonResponse()
-			fich.write(json.dumps(jobj))
+			fich.write(json.dumps(jobj)+"\n")
 
 		fich.close()
 
