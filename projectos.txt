@@ -1,1 +1,1 @@
-{"descripcion": "projectDescripcion", "nombre": "projectNombre", "users": [], "owner": "waxanick"}
+{"descripcion": "projectDescripcion", "nombre": "projectNombre", "users": [{"nick": "waxanickdos"}], "owner": "waxanick"}

@@ -1,2 +1,2 @@
 {"localidad": "waxalocalidad", "propios": [{"nombre": "projectNombre"}], "passwd": "waxapasswd", "correo": "waxacorreo", "nick": "waxanick", "descripcion": "waxadescripcion", "otros": []}
-{"localidad": "waxalocalidaddos", "propios": [], "passwd": "waxapasswddos", "correo": "waxacorreodos", "nick": "waxanickdos", "descripcion": "waxadescripciondos", "otros": []}
+{"localidad": "waxalocalidaddos", "propios": [], "passwd": "waxapasswddos", "correo": "waxacorreodos", "nick": "waxanickdos", "descripcion": "waxadescripciondos", "otros": [{"nombre": "projectNombre"}]}
