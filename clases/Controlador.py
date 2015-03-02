@@ -30,7 +30,7 @@ class Controlador :
 			jobj = json.loads(projectJson)
 			owner = getUserByNick(jobj["owner"])
 			project = Projecto(jobj["nombre"],
-				jobj["descripcion"], owner))
+				jobj["descripcion"], owner)
 
 			for usrName in jobj["users"] :
 				usr = getUserByNick(usrName)
