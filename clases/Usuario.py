@@ -7,11 +7,12 @@ from Projecto import Projecto
 class Usuario :
 	
 	#Constructor segun posicion color y tipo
-	def __init__ (self, nick, passwd, correo, descripcion, localidad) :
+	def __init__ (self, nick, passwd, correo, descripcion, pais, localidad) :
 		self.nick = nick
 		self.passwd = passwd
 		self.correo = correo
 		self.descripcion = descripcion
+		self.pais = pais
 		self.localidad = localidad
 		self.userPro = []
 		self.otherPro = []
@@ -50,6 +51,9 @@ class Usuario :
 
 	def getDescripcion(self) :
 		return self.descripcion
+
+	def getPais(self) :
+		return self.pais
 	
 	def getLocalidad(self) :
 		return self.localidad
@@ -59,6 +63,7 @@ class Usuario :
 		dicc["nick"] = self.nick
 		dicc["correo"] = self.correo
 		dicc["descripcion"] = self.descripcion
+		dicc["pais"] = self.pais
 		dicc["localidad"] = self.localidad
 
 		aux = []
