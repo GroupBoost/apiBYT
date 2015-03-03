@@ -2,15 +2,11 @@ package waxa.pruebapeticionesbyt;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +21,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 
@@ -36,6 +31,7 @@ public class Registro extends Activity implements View.OnClickListener {
     private EditText passwd;
     private EditText correo;
     private EditText descripcion;
+    private EditText pais;
     private EditText localidad;
 
     private Button entrar;
@@ -47,7 +43,7 @@ public class Registro extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro_login);
+        setContentView(R.layout.activity_registro);
 
         this.context = this;
 
@@ -55,6 +51,7 @@ public class Registro extends Activity implements View.OnClickListener {
         passwd = (EditText)findViewById(R.id.passwd);
         correo = (EditText)findViewById(R.id.correo);
         descripcion = (EditText)findViewById(R.id.descripcion);
+        pais = (EditText)findViewById(R.id.pais);
         localidad = (EditText)findViewById(R.id.localidad);
 
         entrar = (Button)findViewById(R.id.entrar);
@@ -76,6 +73,7 @@ public class Registro extends Activity implements View.OnClickListener {
         jobj.put("passwd", "waxapasswd");
         jobj.put("correo", "waxacorreo");
         jobj.put("descripcion", "waxadescripcion");
+        jobj.put("pais", "waxapais");
         jobj.put("localidad", "waxalocalidad");
 
         return jobj;
@@ -87,6 +85,7 @@ public class Registro extends Activity implements View.OnClickListener {
         jobj.put("passwd", this.passwd.getText().toString());
         jobj.put("correo", this.correo.getText().toString());
         jobj.put("descripcion", this.descripcion.getText().toString());
+        jobj.put("pais", this.pais.getText().toString());
         jobj.put("localidad", this.localidad.getText().toString());
 
         return jobj;

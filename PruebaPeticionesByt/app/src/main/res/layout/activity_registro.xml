@@ -14,7 +14,7 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="2"/>
 
     <TextView android:text="nick"
         android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="2"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="2"/>
 
     <TextView android:text="password"
         android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="2"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="2"/>
 
     <TextView android:text="correo"
         android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="2"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -81,7 +81,7 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="2"/>
 
     <TextView android:text="descripcion"
         android:layout_width="wrap_content"
@@ -91,7 +91,7 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="2"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -103,7 +103,29 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="2"/>
+
+    <TextView android:text="pais"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"/>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:hint="tu pais"
+        android:id="@+id/pais"/>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"/>
 
     <TextView android:text="localidad"
         android:layout_width="wrap_content"
@@ -113,7 +135,7 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="2"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -125,7 +147,7 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="2"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -137,6 +159,6 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="2"/>
 
 </LinearLayout>
