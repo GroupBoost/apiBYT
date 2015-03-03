@@ -23,8 +23,9 @@ class Controlador :
 
 		for usr in aux :
 			jobj = json.loads(usr)
-			self.users.append(clases.Usuario(jobj["nick"], jobj["passwd"],
-				jobj["correo"], jobj["descripcion"], jobj["localidad"]))
+			self.users.append(clases.Usuario(jobj["nick"], 
+				jobj["passwd"],	jobj["correo"], jobj["descripcion"], 
+				jobj["pais"], jobj["localidad"]))
 
 
 		for projectJson in aux2 :
@@ -47,7 +48,7 @@ class Controlador :
 
 		if not jobj["nick"] or not jobj["passwd"] \
 			or not jobj["correo"] or not jobj["descripcion"] \
-			or not jobj["localidad"] :
+			or not jobj["pais"] or not jobj["localidad"] :
 			return [False, "empty data"]
 
 		for usr in self.users :
@@ -57,7 +58,9 @@ class Controlador :
 				return [False, "correo"]
 
 		aux = clases.Usuario(jobj["nick"], jobj["passwd"],
-			jobj["correo"], jobj["descripcion"], jobj["localidad"])
+			jobj["correo"], jobj["descripcion"], 
+			jobj["pais"],jobj["localidad"])
+
 		self.users.append(aux)
 		self.guardarDatos()
 		return [True, aux]
