@@ -138,11 +138,27 @@ class Controlador :
 				return aux
 
 
-	def getUsers(self) :
-		return self.users
+	def getAllUserName(self, jobj) :
+		dicc = {}
+		aux = []
+		for usr in self.users :
+			aux2 = {}
+			aux2["user"] = usr.getNick()
+			aux.append(aux2)
 
-	def getProjectos(self) :
-		return self.projectos
+		dicc["users"] = aux
+		return dicc
+
+	def getAllProjectName(self, jobj) :
+		dicc = {}
+		aux = []
+		for projecto in self.projectos :
+			aux2 = {}
+			aux2["owner"] = projecto.getOwner().getNick()
+			aux2["nombre"] = projecto.getNombre()
+			aux.append(aux2)
+		dicc["projectos"] = aux
+		return dicc
 
 	def getUserInfo (self, jobj) :
 		usr = self.getUserByNick(jobj["nick"])
