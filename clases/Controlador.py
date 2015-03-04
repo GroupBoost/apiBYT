@@ -78,9 +78,12 @@ class Controlador :
 
 	def login(self, jobj) :
 		usr = self.getUserByNick(jobj["nick"])
-		if usr.getPasswd() == jobj["passwd"] :
-			return True
-		else :
+		try :
+			if usr.getPasswd() == jobj["passwd"] :
+				return True
+			else :
+				return False
+		except :
 			return False
 
 	def nuevoProjecto(self, jobj) :

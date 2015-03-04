@@ -9,17 +9,19 @@ import clases
 controladora = clases.Controlador()
 
 urls = (
-	'/registro/', 	'Registro',
-	'/login/', 		'Login',
-	'/nuevoPro/', 	'NuevoPro',
-	'/unirsePro/', 	'UnirsePro',
-	'/borrarPro/', 	'BorrarPro',
-	'/getUsuario/', 'GetUsuario',
-	'/getProjecto/', 'GetProjecto',
-	'/setUsrImagen/', 'SetUsrImagen',
-	'/setProImagen/', 'setProImagen',
-	'/getUsrImagen/', 'GetUsrImagen',
-	'/getProImagen/', 'GetProImagen'
+	'/registro/', 		'Registro',
+	'/login/', 			'Login',
+	'/nuevoPro/', 		'NuevoPro',
+	'/unirsePro/', 		'UnirsePro',
+	'/borrarPro/', 		'BorrarPro',
+	'/getUsuario/', 	'GetUsuario',
+	'/getProjecto/', 	'GetProjecto',
+	'/getAllUsr/', 		'GetAllUsr',
+	'/getAllPro/', 		'GetAllPro',
+	'/setUsrImagen/', 	'SetUsrImagen',
+	'/setProImagen/', 	'setProImagen',
+	'/getUsrImagen/', 	'GetUsrImagen',
+	'/getProImagen/', 	'GetProImagen'
 )
 
 app = web.application(urls, globals())
@@ -80,6 +82,16 @@ class GetProjecto :
 	def POST (self) :
 		jobj = json.loads(web.data())
 		return json.dumps(controladora.getProjectInfo(jobj))
+
+class GetAllUsr :
+	def POST (self) :
+		jobj = json.loads(web.data())
+		return json.dumps(controladora.getAllUserName(jobj))
+
+class GetAllPro :
+	def POST (self) :
+		jobj = json.loads(web.data())
+		return json.dumps(controladora.getAllProjectName(jobj))
 
 class SetUsrImagen :
 	def POST (self) :
