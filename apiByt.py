@@ -15,7 +15,11 @@ urls = (
 	'/unirsePro/', 	'UnirsePro',
 	'/borrarPro/', 	'BorrarPro',
 	'/getUsuario/', 'GetUsuario',
-	'/getProjecto/', 'GetProjecto'
+	'/getProjecto/', 'GetProjecto',
+	'/setUsrImagen/', 'SetUsrImagen',
+	'/setProImagen/', 'setProImagen',
+	'/getUsrImagen/', 'GetUsrImagen',
+	'/getProImagen/', 'GetProImagen'
 )
 
 app = web.application(urls, globals())
@@ -76,6 +80,28 @@ class GetProjecto :
 	def POST (self) :
 		jobj = json.loads(web.data())
 		return json.dumps(controladora.getProjectInfo(jobj))
+
+class SetUsrImagen :
+	def POST (self) :
+		jobj = json.loads(web.data())
+		controladora.setImagenUsuario(jobj)
+
+class SetProImagen :
+	def POST (self) :
+		jobj = json.loads(web.data())
+		controladora.setImagenProjecto(jobj)
+
+class GetUsrImagen :
+	def POST (self) :
+		jobj = json.loads(web.data())
+		web.header("Content-Type", "png")
+		return controladora.getImagenUsuario(jobj)
+
+class GetProImagen :
+	def POST (self) :
+		jobj = json.loads(web.data())
+		web.header("Content-Type", "png")
+		return controladora.getImagenProjecto(jobj)
 
 if __name__ == "__main__":
 	app.run()

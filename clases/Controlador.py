@@ -169,11 +169,26 @@ class Controlador :
 			fich2.write(json.dumps(jobj)+"\n")
 
 		fich2.close()
+	
+	def setImagenUsuario(self, jobj) :
+		fich = open ("imagenes/usuarios/" + 
+			jobj["nick"] + ".png", "wb")
+
+		fich.write(jobj["imagen"])
+
+	def setImagenProjecto(self, jobj) :
+		fich = open ("imagenes/projectos/" + 
+			jobj["nick"] + ".png", "wb")
+
+		fich.write(jobj["imagen"])
+
+	def getImagenUsuario(self, jobj) :
+		return open("imagenes/usuarios/" + 
+			jobj["nick"] +".png", "rb").read()
 
 	def getImagenProjecto(self, jobj) :
-		return open(imagenes/
-
-
+		return open("imagenes/projectos/" + 
+			jobj["nombre"] +".png", "rb").read()
 
 
 
