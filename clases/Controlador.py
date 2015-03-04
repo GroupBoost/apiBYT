@@ -11,23 +11,29 @@ class Controlador :
 	def __init__ (self) :
 		self.users = []
 		self.projectos = []
+		self.tags = []
 
-		fich = open ("usuarios.txt", "r")
+		fich = open ("datos/usuarios.txt", "r")
 		aux = fich.readlines()
-
-		fich2 = open("projectos.txt", "r")
-		aux2 = fich2.readlines()
-
 		fich.close()
+
+		fich2 = open("datos/projectos.txt", "r")
+		aux2 = fich2.readlines()
 		fich2.close()
 
 		for usr in aux :
 			jobj = json.loads(usr)
-			self.users.append(clases.Usuario(jobj["nick"], 
+			nuevoUser = clases.Usuario(jobj["nick"], 
 				jobj["passwd"],	jobj["correo"], jobj["descripcion"], 
-				jobj["pais"], jobj["localidad"]))
+				jobj["pais"], jobj["localidad"])
 
+			for tag in jobj["tags"] :
+				nuevoUser.addTag(tag["tag"])
+				if not tag["tag"] in self.tags :
+					self.tags.append(tag["tag"])
 
+			self.users.append(nuevoUser)
+				
 		for projectJson in aux2 :
 			jobj = json.loads(projectJson)
 			owner = self.getUserByNick(jobj["owner"])
@@ -38,6 +44,11 @@ class Controlador :
 				usr = self.getUserByNick(usrName["nick"])
 				project.addUser(usr)
 				usr.addOtherPro(project)
+
+			for tag in jobj["tags"] :
+				project.addTag(tag["tag"])
+				if not tag["tag"] in self.tags :
+					self.tags.append(tag["tag"])
 
 			owner.addUserPro(project)
 			self.projectos.append(project)
@@ -142,7 +153,7 @@ class Controlador :
 		return project.getJsonResponse()
 
 	def guardarDatos(self) :
-		fich = open("usuarios.txt","w")
+		fich = open("datos/usuarios.txt","w")
 
 		for usr in self.users :
 			jobj = usr.getJsonResponse()
@@ -150,13 +161,17 @@ class Controlador :
 			fich.write(json.dumps(jobj)+"\n")
 
 		fich.close()
-		fich = open("projectos.txt","w")
+
+		fich2 = open("datos/projectos.txt","w")
 
 		for project in self.projectos :
 			jobj = project.getJsonResponse()
-			fich.write(json.dumps(jobj)+"\n")
+			fich2.write(json.dumps(jobj)+"\n")
 
-		fich.close()
+		fich2.close()
+
+	def getImagenProjecto(self, jobj) :
+		return open(imagenes/
 
 
 

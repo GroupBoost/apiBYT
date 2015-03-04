@@ -14,6 +14,7 @@ class Projecto :
 		self.descripcion = descripcion
 		self.owner = owner
 		self.users = []
+		self.tags = []
 
 
 	#Gestion de usuarios
@@ -38,6 +39,15 @@ class Projecto :
 	def getDescripcion(self) :
 		return self.descripcion
 
+	def addTag (self, tag) :
+		self.tags.remove(tag)
+	
+	def removeTag (self, tag) :
+		self.tags.remove(tag)
+
+	def getTags(self) :
+		return self.tags
+
 	def getJsonResponse(self) :
 		dicc = {}
 		dicc["nombre"] = self.nombre
@@ -45,7 +55,6 @@ class Projecto :
 		dicc["owner"] = self.owner.getNick()
 		
 		aux = []
-
 		for usr in self.users :
 			aux2 = {}
 			aux2["nick"] = usr.getNick()
@@ -53,4 +62,12 @@ class Projecto :
 
 		dicc["users"] = aux
 
+		aux = []
+		for tag in self.tags :
+			aux2 = {}
+			aux2["tag"] = tag 
+			aux.append(aux2)
+
+		dicc["tags"] = aux
+		
 		return dicc

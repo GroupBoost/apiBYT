@@ -16,6 +16,7 @@ class Usuario :
 		self.localidad = localidad
 		self.userPro = []
 		self.otherPro = []
+		self.tags = []
 	
 
 	#Funciones de gestion de projectos
@@ -32,6 +33,7 @@ class Usuario :
 	def removeOtherPro(self, projecto) :
 		self.otherPro.remove(projecto)
 				
+
 	#Getters y setters
 
 	def getUserPro(self) :
@@ -57,6 +59,15 @@ class Usuario :
 	
 	def getLocalidad(self) :
 		return self.localidad
+	
+	def addTag (self, tag) :
+		self.tags.append(tag)
+
+	def removeTag(self, tag) :
+		self.tags.remove(tag)
+
+	def getTags(self) :
+		return self.tags
 
 	def getJsonResponse(self) :
 		dicc = {}
@@ -81,5 +92,13 @@ class Usuario :
 			aux.append(aux2)
 
 		dicc["otros"] = aux
+
+		aux = []
+		for tag in self.tags :
+			aux2 = {}
+			aux2["tag"] = tag
+			aux.append(aux2)
+
+		dicc["tags"] = aux
 
 		return dicc
