@@ -199,24 +199,26 @@ class Controlador :
 
 	def setImagenProjecto(self, jobj) :
 		fich = open ("imagenes/projectos/" + 
-			jobj["nick"] + ".png", "wb")
+			jobj["nombre"] + ".jpg", "wb")
 
-		fich.write(jobj["imagen"])
+		fich.write(base64.b64decode(jobj["imagen"]))
 		fich.close()
 
 	def getImagenUsuario(self, jobj) :
 		fich = open("imagenes/usuarios/" + 
-			jobj["nick"] +".png", "rb")
-		aux = fich.read()
+			jobj["nick"] +".jpg", "rb")
+		aux = base64.b64encode(fich.read())
 		fich.close()
-		return aux
+		dicc = {"image" : aux}
+		return dicc
 
 	def getImagenProjecto(self, jobj) :
-		fich =  open("imagenes/projectos/" + 
-			jobj["nombre"] +".png", "rb")
-		aux = fich.read()
+		fich = open("imagenes/projectos/" + 
+			jobj["nombre"] +".jpg", "rb")
+		aux = base64.b64encode(fich.read())
 		fich.close()
-		return aux
+		dicc = {"image" : aux}
+		return dicc
 
 
 
