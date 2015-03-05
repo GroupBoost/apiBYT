@@ -7,7 +7,8 @@ from Projecto import Projecto
 class Usuario :
 	
 	#Constructor segun posicion color y tipo
-	def __init__ (self, nick, passwd, correo, descripcion, pais, localidad) :
+	def __init__ (self, name, nick, passwd, correo, descripcion, pais, localidad) :
+		self.name = name
 		self.nick = nick
 		self.passwd = passwd
 		self.correo = correo
@@ -35,6 +36,9 @@ class Usuario :
 				
 
 	#Getters y setters
+
+	def getName(self) :
+		return self.name
 
 	def getUserPro(self) :
 		return self.userPro
@@ -71,6 +75,7 @@ class Usuario :
 
 	def getJsonResponse(self) :
 		dicc = {}
+		dicc["name"] = self.name
 		dicc["nick"] = self.nick
 		dicc["correo"] = self.correo
 		dicc["descripcion"] = self.descripcion

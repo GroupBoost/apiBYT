@@ -1,1 +1,0 @@
-{"localidad": "asd", "propios": [{"nombre": "qwerty"}], "passwd": "asd", "tags": [], "correo": "asd", "nick": "asd", "descripcion": "descripcion", "pais": "asd", "otros": []}

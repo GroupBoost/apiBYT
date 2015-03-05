@@ -24,7 +24,7 @@ class Controlador :
 
 		for usr in aux :
 			jobj = json.loads(usr)
-			nuevoUser = clases.Usuario(jobj["nick"], 
+			nuevoUser = clases.Usuario(jobj["name"], jobj["nick"], 
 				jobj["passwd"],	jobj["correo"], jobj["descripcion"], 
 				jobj["pais"], jobj["localidad"])
 
@@ -59,7 +59,7 @@ class Controlador :
 	def nuevoUser(self, jobj) :
 
 		if not jobj["nick"] or not jobj["passwd"] \
-			or not jobj["correo"] \
+			or not jobj["correo"] or not jobj["name"] \
 			or not jobj["pais"] or not jobj["localidad"] :
 			return [False, "empty data"]
 
@@ -69,7 +69,7 @@ class Controlador :
 			if usr.getCorreo() == jobj["correo"] :
 				return [False, "correo"]
 
-		aux = clases.Usuario(jobj["nick"], jobj["passwd"],
+		aux = clases.Usuario(jobj["name"], jobj["nick"], jobj["passwd"],
 			jobj["correo"], "descripcion", 
 			jobj["pais"],jobj["localidad"])
 
