@@ -49,6 +49,8 @@ class Login :
 		else :
 			dicc["resultado"] = False
 
+		print jobj
+		print dicc
 		return json.dumps(dicc)
 
 class NuevoPro :
@@ -85,13 +87,11 @@ class GetProjecto :
 
 class GetAllUsr :
 	def POST (self) :
-		jobj = json.loads(web.data())
-		return json.dumps(controladora.getAllUserName(jobj))
+		return json.dumps(controladora.getAllUserNick())
 
 class GetAllPro :
 	def POST (self) :
-		jobj = json.loads(web.data())
-		return json.dumps(controladora.getAllProjectName(jobj))
+		return json.dumps(controladora.getAllProjectNombre())
 
 class SetUsrImagen :
 	def POST (self) :

@@ -4,6 +4,7 @@
 import clases
 import json
 #from Usuario import Usuario
+import base64
 #from Projecto import Projecto
 
 class Controlador :
@@ -58,7 +59,7 @@ class Controlador :
 	def nuevoUser(self, jobj) :
 
 		if not jobj["nick"] or not jobj["passwd"] \
-			or not jobj["correo"] or not jobj["descripcion"] \
+			or not jobj["correo"] \
 			or not jobj["pais"] or not jobj["localidad"] :
 			return [False, "empty data"]
 
@@ -69,7 +70,7 @@ class Controlador :
 				return [False, "correo"]
 
 		aux = clases.Usuario(jobj["nick"], jobj["passwd"],
-			jobj["correo"], jobj["descripcion"], 
+			jobj["correo"], "descripcion", 
 			jobj["pais"],jobj["localidad"])
 
 		self.users.append(aux)
@@ -141,7 +142,7 @@ class Controlador :
 				return aux
 
 
-	def getAllUserName(self, jobj) :
+	def getAllUserNick(self) :
 		dicc = {}
 		aux = []
 		for usr in self.users :
@@ -152,7 +153,7 @@ class Controlador :
 		dicc["users"] = aux
 		return dicc
 
-	def getAllProjectName(self, jobj) :
+	def getAllProjectNombre(self) :
 		dicc = {}
 		aux = []
 		for projecto in self.projectos :
@@ -191,23 +192,31 @@ class Controlador :
 	
 	def setImagenUsuario(self, jobj) :
 		fich = open ("imagenes/usuarios/" + 
-			jobj["nick"] + ".png", "wb")
+			jobj["nick"] + ".jpg", "wb")
 
-		fich.write(jobj["imagen"])
+		fich.write(base64.b64decode(jobj["imagen"]))
+		fich.close()
 
 	def setImagenProjecto(self, jobj) :
 		fich = open ("imagenes/projectos/" + 
 			jobj["nick"] + ".png", "wb")
 
 		fich.write(jobj["imagen"])
+		fich.close()
 
 	def getImagenUsuario(self, jobj) :
-		return open("imagenes/usuarios/" + 
-			jobj["nick"] +".png", "rb").read()
+		fich = open("imagenes/usuarios/" + 
+			jobj["nick"] +".png", "rb")
+		aux = fich.read()
+		fich.close()
+		return aux
 
 	def getImagenProjecto(self, jobj) :
-		return open("imagenes/projectos/" + 
-			jobj["nombre"] +".png", "rb").read()
+		fich =  open("imagenes/projectos/" + 
+			jobj["nombre"] +".png", "rb")
+		aux = fich.read()
+		fich.close()
+		return aux
 
 
 
